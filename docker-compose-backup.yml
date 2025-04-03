@@ -1,4 +1,3 @@
-# version: '3.8'
 services:
   web:
     build: .
@@ -9,10 +8,8 @@ services:
       - .:/app
     depends_on:
       - migration
-  
   migration:
-    build: .  # Use the same image as "web" since the Dockerfile includes migrations
-    command: python3 manage.py migrate --noinput
+    image: pygoat/pygoat:latest
+    command: python manage.py migrate --noinput
     volumes:
       - .:/app
-
