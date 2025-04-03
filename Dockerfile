@@ -28,6 +28,7 @@ COPY . /app/
 EXPOSE 8000
 
 
-RUN python3 /app/manage.py migrate
 WORKDIR /app
+RUN python3 manage.py makemigrations
+RUN python3 manage.py migrate
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers","6", "pygoat.wsgi"]
